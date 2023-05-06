@@ -1,0 +1,9 @@
+<div class="text-center pb-5" 
+    infinite-scroll 
+    (scrolled)="onScrollDown($event)" >
+    <div *ngIf="posts.length == 0" id="no_posts" class="d-flex align-items-center justify-content-center flex-column">
+      <h1 class="display-4" i18n>No posts yet. Be the first one!</h1>
+      <a class="btn btn-lg btn-primary mt-3" routerLink="/newpost" i18n>Add new post</a>
+    </div>
+		<post-view *ngFor="let post of posts" [post]="post"></post-view>
+</div>

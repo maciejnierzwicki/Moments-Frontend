@@ -1,0 +1,13 @@
+<div class="border border-dark">
+	<div class="bg-primary text-white border-bottom border-dark">
+		<div class="text-center"><b i18n>Add new comment</b>
+				<button type="button" class="float-end btn-close btn-close-white" aria-label="Close" (click)="activeModal.dismiss()"></button>
+		</div>
+	</div>
+	<div class="bg-light d-flex  flex-column justify-content-center">
+		<textarea name="comment" rows="2" placeholder="Write comment" style="resize:none" class="col-12 text-center" [(ngModel)]="comment" ></textarea>
+		<div class="text-center">
+			<button type="button" class="btn btn-primary mt-2 mb-2" (click)="sendComment(postId)" i18n>Comment</button>
+		</div>
+	</div>
+</div>

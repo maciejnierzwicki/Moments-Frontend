@@ -1,0 +1,30 @@
+<div class="d-flex align-items-center justify-content-center flex-column text-center col-10 col-md-8 col-lg-6 mx-auto">
+  <h1 class="display-6 fs-2 mt-2" i18n>Account verification</h1>
+  <ng-container *ngIf="accountVerified">
+    <h6>Your account has been successfully verified, you now have access to all Moments features.<br>Redirecting...</h6>
+  </ng-container>
+  <ng-container *ngIf="!accountVerified">
+    <h6>Your account needs to pass verifiaction process before you can start using all features of Moments. Click button below to send verification code to e-mail address provided in registration form.</h6>
+    <form *ngIf="!verificationCodeSent" (submit)="sendVerificationCodeRequest()" class="mt-3" ngNativeValidate>
+      <div class="mt-1">
+        <button type="submit" class="btn btn-primary" i18n>
+          <span *ngIf="requestWaiting" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+          Send verification code
+        </button>
+      </div>
+    </form>
+    <form *ngIf="verificationCodeSent" (submit)="sendVerificationCodeConfirmForm()" class="mt-3" ngNativeValidate>
+      <h6>A verification code has been sent to given email address. Enter this code below to proceed.</h6>
+      <div class="form-group mx-auto mt-1">
+        <label for="verificationCode" class="form-label fw-bold" i18n>Verification code</label>
+        <input type="number" name="verificationCode" class="form-control text-center" [(ngModel)]="verificationCodeConfirmForm.verificationCode" minlength="6" min="000000" max="999999" required />
+      </div>
+      <div class="mt-3">
+        <button type="submit" class="btn btn-primary" i18n>Activate account</button>
+      </div>
+    </form>
+    <div *ngIf="error" class="mt-1 mb-1 text-danger">
+      {{error}}
+    </div>
+  </ng-container>
+</div>

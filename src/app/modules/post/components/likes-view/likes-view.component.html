@@ -1,0 +1,19 @@
+<div class="border border-dark">
+	<div class="bg-primary text-white border-bottom border-dark">
+		<div class="text-center"><b i18n>Likes</b>
+				<button type="button" class="float-end btn-close btn-close-white" aria-label="Close" (click)="activeModal.dismiss()">
+		</button>
+		</div>
+	</div>
+	<div class="search-results w-100" style="overflow-y: scroll; max-height: 120px"  
+		infinite-scroll
+		(scrolled)="onScrollDown($event)"
+		[scrollWindow]="false">
+		<div *ngFor="let like of likes" class="ms-1 mt-1 mb-1 border-top border-bottom border-dark">
+			<img *ngIf="!like.user.profilePicture" src="http://192.168.1.114:8080/img/default_avatar.png" alt="Profile picture" class="col-1 mt-1 mb-1 rounded-circle border border-dark" />
+			<img *ngIf="like.user.profilePicture" src="http://192.168.1.114:8080{{like.user.profilePicture}}" alt="Profile picture" class="col-1 mt-1 mb-1 rounded-circle border border-dark" />
+			<a routerLink="/user/{{like.user.id}}" (click)="activeModal.dismiss()" class="ms-2">{{like.user.username}}</a>
+		</div>
+
+	</div>
+</div>

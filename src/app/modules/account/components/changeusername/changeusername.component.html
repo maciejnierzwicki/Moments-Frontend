@@ -1,0 +1,18 @@
+<div class="text-center col-md-6 mx-auto">
+		<h1 class="display-6 fs-2 mt-2" i18n>Change username</h1>
+		<div class="mt-4">
+			<form (submit)="sendChangeUsernameForm()">
+				<div class="form-control-group">
+					<label for="username" class="form-label fw-bold" i18n>Username</label>
+					<input type="text" class="form-control text-center" name="username" [(ngModel)]="form.username" required>
+				</div>
+				<button type="button" class="btn btn-primary border border-dark mt-3" i18n>Change username</button>
+			</form>
+			<div *ngIf="error" class="mt-1 mb-1">
+				<div *ngFor="let message of error.messages" class="text-danger">
+					{{message}}
+				</div>
+			</div>
+		<div *ngIf="success" class="text-success" i18n>Username changed.</div>
+		</div>
+</div>

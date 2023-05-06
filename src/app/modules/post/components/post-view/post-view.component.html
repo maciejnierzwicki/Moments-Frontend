@@ -1,0 +1,72 @@
+	<div class="d-md-flex flex-row bg-dark border border-dark border-2 mt-3 mb-3">
+		<div class="col-12 col-md-8 bg-dark d-flex flex-column align-items-center justify-content-center border-bottom border-dark" style="max-height: 100%">
+			<a routerLink="/post/{{post.id}}" class="m-0 p-0 w-100 hoverbox" title="Go to the post"><img src="http://192.168.1.114:8080{{post.imageLocation}}"style="max-height: 380px; max-width: 100%"/></a>
+		</div>
+		<div class="col-12 col-md-4 d-flex flex-column pt-2 bg-primary pageActive">
+			<div class="pb-1 border-bottom border-dark">
+				<div class="d-flex justify-content-center">
+				<img *ngIf="!post.author.profilePicture" src="http://192.168.1.114:8080/img/default_avatar.png" alt="Profile picture" class="img-fluid col-md-2 col-2 rounded-circle border border-dark bg-light" style="aspect-ratio: 1/1"/>
+				<img *ngIf="post.author.profilePicture" src="http://192.168.1.114:8080{{post.author.profilePicture}}" alt="Profile picture" class="img-fluid col-md-2 col-2 rounded-circle border border-dark bg-light" style="aspect-ratio: 1/1"/>
+					<div>
+						<table class="ms-3 table text-start">
+							<tr>
+								<td class="fw-bold"><a routerLink="/user/{{post.author.id}}" class="m-0 p-0 link-light">{{post.author.username}}</a></td>
+							</tr>
+							<tr>
+								<td class="text-light">{{post.creationDate | date}}</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+			
+			<div class="fw-light fst-italic text-dark h-100 d-flex align-items-center justify-content-center bg-white">{{post.description}}</div>
+			
+			<div class="d-flex align-items-end text-light">
+				<div class="d-flex flex-column col-12">
+					<div class="d-flex bg-primary pageActive border-top border-dark w-100 text-center ps-1">
+						<div class="col-6">
+							<a (click)="openLikes()" class="text-underline text-light" style="cursor: pointer">
+								<span i18n>Likes:</span>{{post.likesCount}}
+							</a>
+						</div>
+						<div class="col-6">
+							<a (click)="openComments()" class="text-underline text-light" style="cursor: pointer">
+								<span i18n>Comments:</span>{{post.commentsCount}}
+							</a>
+						</div>
+					</div>
+					<div class="d-flex bg-primary pageActive w-100 text-center ps-1 pb-1 pe-1">
+						<div class="col-12" *ngIf="!isLoggedUser()" i18n>
+							<small>Sign in to like or comment post.</small>
+						</div>
+						<div class="w-100 d-flex justify-content-center align-items-center">
+							<ng-template [ngIf]="isLoggedUser()">
+								<div class="col-3">
+									<button class="btn btn-sm btn-light p-0 border border-dark col-12" (click)="sendLike(post.id)" i18n>
+										<fa-icon [icon]="faHeart" class="fa-xl"></fa-icon>
+									</button>
+								</div>
+								<div class="col-3">
+									<button class="btn btn-sm btn-light p-0 border border-dark col-12" (click)="openNewComment()" i18n>
+										<fa-icon [icon]="faComment" class="fa-xl"></fa-icon>
+									</button>
+								</div>
+							</ng-template>
+							<ng-template [ngIf]="isAuthorUser()">
+								<div class="col-3">
+									<button class="btn btn-sm btn-light p-0 border border-dark col-12" (click)="openEditPost()" i18n>
+										<fa-icon [icon]="faFilePen" class="fa-xl"></fa-icon>
+									</button>
+								</div>
+								<div class="col-3">
+									<button class="btn btn-sm btn-light p-0 border border-dark col-12" (click)="openDeletePost()" i18n>
+										<fa-icon [icon]="faX" class="fa-xl"></fa-icon>
+									</button>
+								</div>
+							</ng-template>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>

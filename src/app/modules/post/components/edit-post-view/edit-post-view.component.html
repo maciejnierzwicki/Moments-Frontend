@@ -1,0 +1,20 @@
+<div class="border border-dark">
+  <div class="bg-primary text-white border-bottom border-dark">
+    <div class="text-center">
+      <b i18n>Edit post</b>
+      <button type="button" class="float-end btn-close btn-close-white" aria-label="Close" (click)="activeModal.dismiss()">
+      </button>
+    </div>
+  </div>
+  <div class="bg-light d-flex flex-column justify-content-center align-items-center text-center">
+      <form>
+        <div class="form-group mx-auto mt-1">
+          <label for="description" class="form-label fw-bold mb-2" i18n>Description</label>
+          <textarea name="description" class="form-control" cols="32" rows="3" style="resize: none;" [(ngModel)]="editPostForm.description" i18n></textarea>
+        </div>
+        <button type="button" class="btn btn-primary mt-2 mb-2" (click)="editPost()" i18n>Edit post</button>
+        <div class="text-danger mb-1" *ngIf="error">{{error}}</div>
+        <div class="text-success mb-1" *ngIf="success" i18n>Post edited. Redirecting...</div>
+      </form>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+<div class="text-center col-md-6 mx-auto">
+	<h1 class="display-6 fs-2 mt-2" i18n>Notifications</h1>
+	
+	<div *ngFor="let notification of notifications">
+		<a (click)="markAsRead(notification)" [routerLink]="getLink(notification)" class="" style="text-decoration: none">
+			<container-element [ngSwitch]="notification.notificationType.toString()">
+				<post-like-notification-description *ngSwitchCase="'POST_LIKE'" [notification]="notification"></post-like-notification-description>
+				<post-comment-notification-description *ngSwitchCase="'POST_COMMENT'" [notification]="notification"></post-comment-notification-description>
+				<user-follow-notification-description *ngSwitchCase="'USER_FOLLOW'" [notification]="notification"></user-follow-notification-description>
+			</container-element>
+		</a>
+</div>
+</div>

@@ -1,0 +1,8 @@
+<div class="col-12 btn btn-light rounded-0 border border-dark" [ngClass]="{'active': notification.read}">
+  <table class="table m-0">
+    <tr>
+      <td class="text-start"><b>{{notification.like.user.username}}</b> liked your post.</td>
+      <td class="text-end"><button class="badge badge-primary bg-primary rounded-0"><span class="">{{notification.sentDate | date}}</span></button></td>
+    </tr>
+  </table>
+</div>

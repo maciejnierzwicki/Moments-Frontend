@@ -1,0 +1,31 @@
+<div class="border border-dark">
+	<div class="bg-primary text-white border-bottom border-dark">
+		<div class="text-center"><b i18n>Comments</b>
+				<button type="button" class="float-end btn-close btn-close-white" aria-label="Close" (click)="activeModal.dismiss()">
+		</button>
+		</div>
+	</div>
+	<div class="search-results w-100" style="overflow-y: scroll; max-height: 200px"  
+		infinite-scroll
+		(scrolled)="onScrollDown($event)"
+		[scrollWindow]="false">
+		 <div *ngFor="let comment of comments" class="mt-1 mb-1 border-bottom border-dark">
+					<div class="d-flex border border-dark">
+						<div class="col-1 ms-1">
+							<img *ngIf="!comment.user.profilePicture" src="http://192.168.1.114:8080/img/default_avatar.png" alt="Profile picture" class="img-fluid rounded-circle border border-dark mt-1" />
+							<img *ngIf="comment.user.profilePicture" src="http://192.168.1.114:8080{{comment.user.profilePicture}}" alt="Profile picture" class="img-fluid rounded-circle border border-dark mt-1" />
+						</div>
+						<table class="table table-sm m-0 p-0 ms-2">
+							<tr>
+								<td class="text-start align-top"><a routerLink="/user/{{comment.user.id}}" (click)="activeModal.dismiss()" class="m-0 p-0">{{comment.user.username}}</a></td>
+								<td class="text-end align-top"><small>{{comment.sentDate | date}}</small></td>
+							</tr>
+							<tr class="bg-light">
+								<td class="align-top" colspan="2"><small><i>{{comment.message}}</i></small></td>
+							</tr>
+						</table>
+					</div>
+		 </div>
+
+	</div>
+</div>

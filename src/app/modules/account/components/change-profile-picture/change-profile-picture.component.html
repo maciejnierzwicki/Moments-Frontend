@@ -1,0 +1,26 @@
+<div class="text-center col-md-6 mx-auto">
+		<h1 class="display-6 fs-2 mt-2" i18n>Change profile picture</h1>
+		
+		<div class="mt-3">
+			<div class="fw-bold mb-2" i18n>Current picture</div>
+			<img *ngIf="!this.currentUser?.profilePicture" src="http://192.168.1.114:8080/img/default_avatar.png" alt="Profile picture" class="img-fluid col-md-2 col-2 rounded-circle border border-dark" style="aspect-ratio: 1/1"/>
+			<img *ngIf="this.currentUser?.profilePicture" src="http://192.168.1.114:8080{{this.currentUser?.profilePicture}}" alt="Profile picture" class="img-fluid col-md-2 col-2 rounded-circle border border-dark" style="aspect-ratio: 1/1"/>
+		
+		</div>
+		
+		
+		<div class="mt-4">
+			<form enctype="multipart/form-data" (submit)="sendProfilePictureForm()">
+				<div class="form-group mb-3">
+					<div class="fw-bold mb-2" i18n>New picture</div>
+					<label for="image" class="btn btn-primary" i18n>
+						Select image
+					</label>
+					<input type="file" name="image" id="image" accept="image/jpeg, image/png" (change)="setImage($event)" style="display: none" required />
+				</div>
+				<button type="submit" class="btn btn-primary mb-3" i18n>Upload</button>
+				<div class="text-danger mb-1" *ngIf="error">{{error}}</div>
+				<div class="text-success mb-1" *ngIf="sendSuccess" i18n>Image uploaded. Reloading page...</div> 
+			</form>
+		</div>
+</div>

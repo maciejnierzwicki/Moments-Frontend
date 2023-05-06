@@ -1,0 +1,23 @@
+<nav class="m-0 mb-1 navbar navbar-expand-md navbar-light sticky-top bg-light border-bottom border-dark">
+	 <div class="container-fluid">
+	<a class="navbar-brand h1 mb-0" href="#" i18n>Account</a>
+	<button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#accountNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="accountNavAltMarkup">
+		<div class="navbar-nav mx-auto text-center">
+			<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == ''}" [routerLink]="['/account']" i18n><span class="my-auto">Summary</span></a>
+			<ng-container *ngIf="isVerifiedUser()">
+				<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'notifications'}" [routerLink]="['/account/notifications']" i18n><span class="my-auto">Notifications</span></a>
+				<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'changepassword'}" [routerLink]="['/account/changepassword']" i18n><span class="my-auto">Change password</span></a>
+				<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'changeemail'}" [routerLink]="['/account/changeemail']" i18n><span class="my-auto">Change e-mail</span></a>
+				<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'changeusername'}" [routerLink]="['/account/changeusername']" i18n><span class="my-auto">Change username</span></a>
+				<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'changeprofilepicture'}" [routerLink]="['/account/changeprofilepicture']" i18n><span class="my-auto">Change profile picture</span></a>
+			</ng-container>
+			<ng-container *ngIf="!isVerifiedUser()">
+				<a class="d-flex justify-content-center nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'verification'}" [routerLink]="['/account/verification']" i18n><span class="my-auto">Verification</span></a>
+			</ng-container>
+		</div>
+	</div>
+	 </div>
+</nav>

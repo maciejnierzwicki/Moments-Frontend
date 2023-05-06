@@ -1,0 +1,20 @@
+<div class="sticky-top" id="main_nav">
+	<nav class="m-0 navbar navbar-expand-md navbar-light bg-light border-bottom border-dark">
+		 <div class="container-md">
+		<a class="navbar-brand h1 mb-0" routerLink="/" i18n>Moments</a>
+		<button class="navbar-toggler mb-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+			<div class="navbar-nav mx-auto text-center">
+				<a routerLink="/explore" class="nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'explore'}" i18n>Explore</a>
+				<a *ngIf="!isLoggedUser()" routerLink="/signin" class="nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'signin'}" i18n>Sign in</a>
+				<a *ngIf="isLoggedVerifiedUser()" routerLink="/newpost" class="nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'newpost'}" i18n>New post</a>
+				<a *ngIf="isLoggedUser()" routerLink="/account" class="nav-link bg-primary me-1 text-white" [ngClass]="{'pageActive': getChildPath() == 'account'}" i18n>My account</a>
+				<a *ngIf="isLoggedUser()" routerLink="/account" class="nav-link bg-primary me-1 text-white" (click)="signOut()" i18n>Sign out</a>
+			</div>
+		</div>
+		 </div>
+	</nav>
+	<notifications-bar></notifications-bar>
+</div>

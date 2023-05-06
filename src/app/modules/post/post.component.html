@@ -1,0 +1,11 @@
+<div class="text-center mt-3 mb-3">
+	<ng-template [ngIf]="post">
+		<post-view [post]="post"></post-view>
+	</ng-template>
+	<ng-template [ngIf]="!post">
+		<div class="d-flex flex-column align-items-center justify-content-center text-center" id="no_post">
+			<h1 class="display-4" i18n>Post not found.</h1>
+			<a class="btn btn-lg btn-primary mt-3" routerLink="/explore" i18n>Go to posts</a>
+		</div>
+	</ng-template>
+</div>

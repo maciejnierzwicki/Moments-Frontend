@@ -1,0 +1,50 @@
+<div class="text-center">
+	<ng-template [ngIf]="user">
+		<div class="d-flex flex-column align-content-center mt-2 mb-2">
+			<div class="col-3 col-md-2 mx-auto">
+			
+			<img *ngIf="!user.profilePicture" src="http://192.168.1.114:8080/img/default_avatar.png" alt="Profile picture" class="col-9 col-md-6 img-fluid rounded-circle border border-dark" style="aspect-ratio: 1/1"/>
+			<img *ngIf="user.profilePicture" src="http://192.168.1.114:8080{{user.profilePicture}}" alt="Profile picture" class="col-9 col-md-6 img-fluid rounded-circle border border-dark" style="aspect-ratio: 1/1"/>
+			</div>
+			<div><span class="fw-bold">{{user.username}}</span></div>
+			<div class="mx-auto">
+				<table class="table table-sm table-borderless">
+					<tbody>
+						<tr>
+							<td class="m-0 text-end">{{user.profileDetails.followersCount}}</td>
+							<td class="m-0 text-start" i18n>Followers</td>
+						</tr>
+						<tr>
+							<td class="m-0 pt-0 text-end">{{user.profileDetails.followingCount}}</td>
+							<td class="m-0 pt-0 text-start" i18n>Following</td>
+						</tr>
+						<tr>
+							<td class="m-0 pt-0 text-end">{{user.profileDetails.postsCount}}</td>
+							<td class="m-0 pt-0 text-start" i18n>Posts</td>
+						</tr>
+					</tbody>
+				</table>
+				<div *ngIf="getLoggedUser() != null && user.id != getLoggedUser()?.id"><button class="btn btn-sm btn-primary fw-bold" (click)="followUser()"><span *ngIf="!isFollowed"i18n>Follow</span><span *ngIf="isFollowed" i18n>Unfollow</span></button></div>
+			</div>
+		</div>
+		<hr>
+		<div class="search-results d-flex flex-column justify-content-center align-items-center" 
+			infinite-scroll 
+			(scrolled)="onScrollDown($event)" >
+			<div *ngFor="let chunk of postsChunked | keyvalue" class="row w-100">
+				 <div *ngFor="let post of chunk.value; index as j" class="col-4 border border-1 m-0 p-0" style="aspect-ratio: 1 / 1;">
+					 <a routerLink="/post/{{post.id}}" class="my-auto">
+						<post-view-small [post]="post" [homeView]="true"></post-view-small>
+									
+					</a>
+				 </div>
+			</div>
+
+
+		</div>
+		
+	</ng-template>
+	<ng-template [ngIf]="!user">
+		<div i18n>User not found</div>
+	</ng-template>
+</div>
